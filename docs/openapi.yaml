@@ -13,7 +13,7 @@ tags:
     description: Register, login, logout, refresh user operations
 
 servers:
-  - url: https://nodejs-hw-mongodb-ntfc.onrender.com
+  - url: https://phonebook-oomd.onrender.com
 paths:
   /contacts:
     get:

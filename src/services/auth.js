@@ -37,7 +37,8 @@ export const loginUser = async (payload) => {
   const newSession = createSession();
 
   const session = await SessionsCollection.create({
-    session: { userId: user._id, ...newSession },
+    userId: user._id,
+    ...newSession,
   });
   return {
     session,
