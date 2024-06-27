@@ -39,11 +39,24 @@ responses:
             data:
               type: object
               required:
-                - accessToken
+                - token
+                - user
               properties:
-                accessToken:
+                token:
                   type: string
                   example: 'qLVfwR9pQRPbuAfEiwZXZwKUFTzT/oCWbpXYQh3m'
+                user:
+                  type: object
+                  required:
+                    - email
+                    - name
+                  properties:
+                    email:
+                      type: string
+                      example: example@mail.com
+                    name:
+                      type: string
+                      example: 'Winston Churchill'
   '401':
     description: User not found or password is wrong
     $ref: '../../../components/responses/401.yaml'
