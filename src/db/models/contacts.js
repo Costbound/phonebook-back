@@ -1,3 +1,4 @@
+import createHttpError from 'http-errors';
 import { Schema, model } from 'mongoose';
 
 const contactSchema = new Schema(
@@ -31,5 +32,18 @@ const contactSchema = new Schema(
     versionKey: false,
   },
 );
+
+contactSchema.post('save', (err, req, res, next) => {
+  next(createHttpError(400, err.message));
+});
+
+contactSchema.pre('findOneAndUpdate', function () {
+  this.options.new = true;
+  this.options.runValidators = true;
+});
+
+contactSchema.post('findOneAndUpdate', (err, req, res, next) => {
+  next(createHttpError(400, err.message));
+});
 
 export const ContactsCollection = model('contacts', contactSchema);
