@@ -33,7 +33,7 @@ const contactSchema = new Schema(
   },
 );
 
-contactSchema.post('save', (err, req, res, next) => {
+contactSchema.post('save', (err, data, next) => {
   err.status = 400;
   next();
 });
@@ -43,7 +43,7 @@ contactSchema.pre('findOneAndUpdate', function () {
   this.options.runValidators = true;
 });
 
-contactSchema.post('findOneAndUpdate', (err, req, res, next) => {
+contactSchema.post('findOneAndUpdate', (err, data, next) => {
   err.status = 400;
   next();
 });
