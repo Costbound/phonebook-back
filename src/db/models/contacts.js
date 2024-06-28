@@ -34,7 +34,8 @@ const contactSchema = new Schema(
 );
 
 contactSchema.post('save', (err, data, next) => {
-  next(createHttpError(400, err));
+  err = createHttpError(400, err.message);
+  next();
 });
 
 contactSchema.pre('findOneAndUpdate', function () {
@@ -43,7 +44,8 @@ contactSchema.pre('findOneAndUpdate', function () {
 });
 
 contactSchema.post('findOneAndUpdate', (err, data, next) => {
-  next(createHttpError(400, err));
+  err = createHttpError(400, err.message);
+  next();
 });
 
 export const ContactsCollection = model('contacts', contactSchema);
