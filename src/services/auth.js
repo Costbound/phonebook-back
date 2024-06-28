@@ -23,12 +23,12 @@ export const registerUser = async (payload) => {
   });
 };
 
-export const loginUser = async (payload) => {
-  const user = await UsersCollection.findOne({ email: payload.email });
+export const loginUser = async ({ email, password }) => {
+  const user = await UsersCollection.findOne({ email });
 
   if (!user) throw createHttpError(401, 'User not found');
 
-  const isPasswordEqual = await bcrypt.compare(payload.password, user.password);
+  const isPasswordEqual = await bcrypt.compare(password, user.password);
 
   if (!isPasswordEqual) throw createHttpError(401, 'Wrong password');
 
