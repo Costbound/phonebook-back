@@ -17,18 +17,25 @@ export const registerUser = async (payload) => {
   if (user) throw createHttpError(409, 'Email in use');
 
   const hashedPassword = await bcrypt.hash(payload.password, 10);
-  return await UsersCollection.create({
+  const newUser = await UsersCollection.create({
     ...payload,
     password: hashedPassword,
   });
+
+  if (!newUser) throw createHttpError(500, 'Fail to register user');
+
+  return {
+    email: newUser.email,
+    password: payload.password,
+  };
 };
 
-export const loginUser = async (payload) => {
-  const user = await UsersCollection.findOne({ email: payload.email });
+export const loginUser = async ({ email, password }) => {
+  const user = await UsersCollection.findOne({ email });
 
   if (!user) throw createHttpError(401, 'User not found');
 
-  const isPasswordEqual = await bcrypt.compare(payload.password, user.password);
+  const isPasswordEqual = await bcrypt.compare(password, user.password);
 
   if (!isPasswordEqual) throw createHttpError(401, 'Wrong password');
 
