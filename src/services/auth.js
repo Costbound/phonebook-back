@@ -17,10 +17,17 @@ export const registerUser = async (payload) => {
   if (user) throw createHttpError(409, 'Email in use');
 
   const hashedPassword = await bcrypt.hash(payload.password, 10);
-  return await UsersCollection.create({
+  const newUser = await UsersCollection.create({
     ...payload,
     password: hashedPassword,
   });
+
+  if (!newUser) throw createHttpError(500, 'Fail to register user');
+
+  return {
+    email: newUser.email,
+    password: payload.password,
+  };
 };
 
 export const loginUser = async ({ email, password }) => {

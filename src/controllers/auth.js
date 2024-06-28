@@ -9,8 +9,8 @@ import { setupSession } from '../utils/session.js';
 import { requestResetToken } from '../services/auth.js';
 
 export const registerUserController = async (req, res) => {
-  const user = await registerUser(req.body);
-  const loginResponse = await loginUser(user);
+  const userData = await registerUser(req.body);
+  const loginResponse = await loginUser(userData);
 
   res.status(201).json({
     status: 201,
