@@ -34,7 +34,7 @@ const contactSchema = new Schema(
 );
 
 contactSchema.post('save', (err, data, next) => {
-  err = createHttpError(400, err.message);
+  err.status = 400;
   next();
 });
 
@@ -44,7 +44,7 @@ contactSchema.pre('findOneAndUpdate', function () {
 });
 
 contactSchema.post('findOneAndUpdate', (err, data, next) => {
-  err = createHttpError(400, err.message);
+  err.status = 400;
   next();
 });
 
