@@ -1,4 +1,3 @@
-import createHttpError from 'http-errors';
 import { Schema, model } from 'mongoose';
 
 const contactSchema = new Schema(
