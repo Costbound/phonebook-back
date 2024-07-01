@@ -27,7 +27,7 @@ requestBody:
             example: 'AgasAS412_2'
 responses:
   '201':
-    description: User created
+    description: User created (token can be null if User was created, but session fail to create, in this case manual login is required)
     content:
       application/json:
         schema:
@@ -44,27 +44,7 @@ responses:
               type: string
               example: 'Successfully registered a user!'
             data:
-              type: object
-              required:
-                - token
-                - user
-              properties:
-                token:
-                  type: string
-                  desacription: 'Access token uses for avtorization. Can be null if user registered, but session was not created.'
-                  example: 'qLVfwR9pQRPbuAfEiwZXZwKUFTzT/oCWbpXYQh3m'
-                user:
-                  type: object
-                  required:
-                    - name
-                    - email
-                  properties:
-                    name:
-                      type: string
-                      example: 'Winston Churchill'
-                    email:
-                      type: string
-                      example: 'example@gmail.com'
+              $ref: '../../../components/responses/userData.yaml'
   '409':
     description: Email in use
     content:
