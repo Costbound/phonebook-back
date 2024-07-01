@@ -24,7 +24,18 @@ export const registerUser = async (payload) => {
 
   if (!newUser) throw createHttpError(500, 'Fail to register user');
 
-  return newUser;
+  const newSession = await SessionsCollection.create({
+    userId: newUser._id,
+    ...createSession(),
+  });
+
+  if (!newSession)
+    throw createHttpError(401, 'Account created, but not logged in.');
+
+  return {
+    session: newSession,
+    user: newUser,
+  };
 };
 
 export const loginUser = async ({ email, password }) => {
@@ -38,11 +49,9 @@ export const loginUser = async ({ email, password }) => {
 
   await SessionsCollection.deleteOne({ userId: user._id });
 
-  const newSession = createSession();
-
   const session = await SessionsCollection.create({
     userId: user._id,
-    ...newSession,
+    ...createSession(),
   });
   return {
     session,
