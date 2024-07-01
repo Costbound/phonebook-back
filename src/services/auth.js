@@ -29,9 +29,6 @@ export const registerUser = async (payload) => {
     ...createSession(),
   });
 
-  if (!newSession)
-    throw createHttpError(401, 'Account created, but not logged in.');
-
   return {
     session: newSession,
     user: newUser,

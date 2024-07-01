@@ -44,6 +44,7 @@ responses:
               properties:
                 token:
                   type: string
+                  desacription: 'Access token uses for avtorization.'
                   example: 'qLVfwR9pQRPbuAfEiwZXZwKUFTzT/oCWbpXYQh3m'
                 user:
                   type: object

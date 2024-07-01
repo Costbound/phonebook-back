@@ -46,19 +46,25 @@ responses:
             data:
               type: object
               required:
-                - _id
-                - name
-                - email
+                - token
+                - user
               properties:
-                _id:
+                token:
                   type: string
-                  example: '65e4decdd286b30065d54af9'
-                name:
-                  type: string
-                  example: 'Winston Churchill'
-                email:
-                  type: string
-                  example: 'example@gmail.com'
+                  desacription: 'Access token uses for avtorization. Can be null if user registered, but session was not created.'
+                  example: 'qLVfwR9pQRPbuAfEiwZXZwKUFTzT/oCWbpXYQh3m'
+                user:
+                  type: object
+                  required:
+                    - name
+                    - email
+                  properties:
+                    name:
+                      type: string
+                      example: 'Winston Churchill'
+                    email:
+                      type: string
+                      example: 'example@gmail.com'
   '409':
     description: Email in use
     content:
