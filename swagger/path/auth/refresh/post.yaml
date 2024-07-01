@@ -23,28 +23,8 @@ responses:
             message:
               type: string
               example: 'Successfully refreshed a session!'
-              data:
-                type: object
-                required:
-                  - token
-                  - user
-                properties:
-                  token:
-                    type: string
-                    desacription: 'Access token uses for avtorization.'
-                    example: 'qLVfwR9pQRPbuAfEiwZXZwKUFTzT/oCWbpXYQh3m'
-                  user:
-                    type: object
-                    required:
-                      - email
-                      - name
-                    properties:
-                      email:
-                        type: string
-                        example: example@mail.com
-                      name:
-                        type: string
-                        example: 'Winston Churchill'
+            data:
+              $ref: '../../../components/responses/userData.yaml'
   '401':
     description: 'Refresh token expired / not valid. Session not found'
     $ref: '../../../components/responses/401refresh.yaml'
