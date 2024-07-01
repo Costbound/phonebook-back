@@ -13,7 +13,12 @@ const PORT = Number(env('PORT', 3000));
 export const setupServer = () => {
   const app = express();
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: env('CORS_APPROVED_DOMAINS')?.join(',') ?? [],
+    }),
+  );
+
   app.use(express.json());
   app.use(cookieParser());
   app.use(
