@@ -15,7 +15,7 @@ export const setupServer = () => {
 
   app.use(
     cors({
-      origin: env('CORS_APPROVED_DOMAINS')?.join(',') ?? [],
+      origin: env('CORS_APPROVED_DOMAINS')?.split(', ') ?? [],
     }),
   );
 
