@@ -19,8 +19,8 @@ export const registerUserController = async (req, res) => {
     data: {
       token: userData.session.accessToken,
       user: {
-        name: userData.name,
-        email: userData.email,
+        name: userData.user.name,
+        email: userData.user.email,
       },
     },
   });
