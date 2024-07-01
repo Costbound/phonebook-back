@@ -2,7 +2,7 @@ tags:
   - Authentication
 summary: Register user
 operationId: registerUser
-description: 'Create new user from request body'
+description: 'Create new user from request body.'
 requestBody:
   content:
     application/json:
