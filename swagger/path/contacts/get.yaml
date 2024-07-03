@@ -7,18 +7,6 @@ security:
   - bearerAuth: []
 parameters:
   - in: query
-    name: page
-    schema:
-      type: integer
-      description: Page number
-      example: 1
-  - in: query
-    name: perPage
-    schema:
-      type: integer
-      description: Amount of items in one page
-      example: 10
-  - in: query
     name: sortBy
     schema:
       type: string
@@ -66,35 +54,15 @@ responses:
             data:
               type: object
               required:
-                - data
-                - page
-                - perPage
+                - items
                 - totalItems
-                - totalPages
-                - hasNextPage
-                - hasPreviousPage
               properties:
-                data:
+                items:
                   type: array
                   items:
                     $ref: '../../components/schemas/contact.yaml'
-                page:
-                  type: number
-                  example: 1
-                perPage:
-                  type: number
-                  example: 15
                 totalItems:
                   type: number
                   example: 36
-                totalPages:
-                  type: number
-                  example: 5
-                hasNextPage:
-                  type: boolean
-                  example: true
-                hasPreviousPage:
-                  type: boolean
-                  example: false
   '401':
     $ref: '../../components/responses/401.yaml'

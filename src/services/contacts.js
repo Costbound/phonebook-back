@@ -22,7 +22,7 @@ export const getAllContacts = async ({
   ]);
 
   return {
-    contacts: contacts,
+    items: contacts,
     totalItems: contactsCount,
   };
 };
