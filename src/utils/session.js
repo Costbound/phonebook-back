@@ -18,10 +18,12 @@ export const setupSession = (res, session) => {
     httpOnly: true,
     expires: new Date(Date.now() + THIRTY_DAYS),
     sameSite: 'none',
+    secure: true,
   });
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + THIRTY_DAYS),
     sameSite: 'none',
+    secure: true,
   });
 };
